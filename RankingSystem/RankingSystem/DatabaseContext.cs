@@ -4,8 +4,12 @@ using RankingSystem.RankingSystem.Models;
 
 namespace RankingSystem.RankingSystem;
 
-public class DatabaseContext : DbContext
+public sealed class DatabaseContext : DbContext
 {
+    public DatabaseContext()
+    {
+        Database.Migrate();
+    }
     public DbSet<TowerRankingModel> Scores { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
